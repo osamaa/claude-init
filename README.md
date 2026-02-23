@@ -22,7 +22,7 @@ your-project/
     decisions/           # Decision log with rationale
     contracts/           # Cross-project interface agreements
     plans/               # Strategy and planning docs
-    ideas/               # Ideas backlog
+    ideas/               # Ideas backlog (completed ideas archived to ideas/archive/)
     guides/              # How-to guides and runbooks
 ```
 
@@ -60,6 +60,11 @@ It will ask you about the project (name, description, structure, tech stack) and
 ## Core Principle
 
 The root agent **never edits code** — even for single-codebase projects. It always delegates to sub-agents. The manager manages. This keeps the root agent focused on planning, coordination, and quality control while sub-agents handle implementation.
+
+## Built-in Behaviors
+
+- **Stale task surfacing** — At the start of each session, the agent scans for in-progress tasks and flags them. It asks you which ones to close but never closes them on its own.
+- **Idea archiving** — When you confirm a task is done and it originated from an idea, the agent moves the idea file to `ideas/archive/`. The main ideas folder stays clean — only open ideas live there.
 
 ## Included Skills
 

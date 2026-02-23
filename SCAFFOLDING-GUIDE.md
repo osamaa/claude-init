@@ -23,7 +23,7 @@ The agent's workspace. Contains:
 | `decisions/` | Decision log — records of key choices and their rationale. |
 | `contracts/` | Cross-project contracts — interface agreements between sub-projects. |
 | `plans/` | Strategy docs — larger plans that spawn multiple tasks. |
-| `ideas/` | Ideas backlog — things to explore later. |
+| `ideas/` | Ideas backlog — things to explore later. Completed ideas get moved to `ideas/archive/`. |
 | `guides/` | How-to guides and runbooks — operational knowledge. |
 
 ### 3. `OPERATIONS.md`

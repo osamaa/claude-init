@@ -25,6 +25,7 @@ When in doubt, write the brief. It takes 2 minutes and saves 20.
 2. **No commits until approved.** Stage files if you want, but `git commit` only on explicit user approval.
 3. **Every task needs verification.** Run the build/lint/test commands before reporting. Don't report success if the build fails.
 4. **Build before you report.** Always. No exceptions. "It should work" is not verification.
+5. **Surface stale tasks.** At the start of each session, check `{{HQ_DIR}}/tasks/` for briefs with Status "In Progress". List them and ask the user if any should be closed. Never close them on your own.
 
 {{#MULTI_PROJECT}}
 ## The Agents
@@ -151,6 +152,10 @@ Strategic plans go in `{{HQ_DIR}}/plans/`. Free-form markdown. Use them for mult
 ## Ideas
 
 Feature ideas and backlog items go in `{{HQ_DIR}}/ideas/`. Free-form markdown. When an idea gets promoted to real work, create a task brief for it.
+
+### Archiving Ideas
+
+When the user confirms a task is done and that task originated from an idea file, move the idea from `{{HQ_DIR}}/ideas/` to `{{HQ_DIR}}/ideas/archive/`. This keeps the main ideas folder clean — only open/unworked ideas live there. Archived ideas are kept for reference, not deleted.
 
 ## Numbering
 
