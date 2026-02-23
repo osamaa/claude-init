@@ -37,6 +37,9 @@ The operations manual inside the HQ. Defines:
 ### 4. `TODO.md`
 A simple running todo list organized by project area.
 
+### 5. `.claude/skills/go-git/`
+A skill that gives the agent a `/go-git` slash command — a full git add → commit → push workflow in one step. It checks for a remote before pushing (skips push if none exists), stages files explicitly (no `git add .`), skips secrets, and follows the repo's commit style.
+
 ## Core Principle: Always Delegate
 
 The root agent **NEVER edits code directly** — regardless of whether the project has one codebase or ten. It always delegates implementation to sub-agents via the Task tool. The root agent is the manager: it plans, writes task briefs, delegates, reviews output, runs build/verify commands, and reports back. This is non-negotiable.

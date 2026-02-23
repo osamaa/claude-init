@@ -11,6 +11,9 @@ Point it at any project and it scaffolds the **Chief of Staff** pattern — a sy
 ```
 your-project/
   CLAUDE.md              # Defines the agent's role, rules, and context
+  .claude/
+    skills/
+      go-git/SKILL.md    # /go-git slash command (git add → commit → push)
   hq/                    # The agent's workspace
     OPERATIONS.md        # How work gets done (lifecycle, templates, rules)
     TODO.md              # Running todo list
@@ -56,6 +59,12 @@ It will ask you about the project (name, description, structure, tech stack) and
 ## Core Principle
 
 The root agent **never edits code** — even for single-codebase projects. It always delegates to sub-agents. The manager manages. This keeps the root agent focused on planning, coordination, and quality control while sub-agents handle implementation.
+
+## Included Skills
+
+### `/go-git`
+
+A one-command git workflow: stages changed files explicitly, commits with a style-matched message, and pushes. Checks if a remote exists before pushing — if there's no remote, it commits and stops. Never force pushes, never amends, skips secrets.
 
 ## Works With
 

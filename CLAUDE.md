@@ -21,6 +21,7 @@ Your job: when a user points you at a project, you set up the full "Chief of Sta
    - A `{project}-hq/` directory (or just `hq/`) with the full structure
    - An `OPERATIONS.md` customized for their agent setup
    - A `TODO.md` starter
+   - A `.claude/skills/go-git/SKILL.md` — the `/go-git` slash command
    - Starter `.gitkeep` files in empty directories
 
 3. **Explain** — After scaffolding, explain to the user:
@@ -45,6 +46,7 @@ This directory contains:
   - `OPERATIONS.md.template` — Operations manual template
   - `TODO.md.template` — TODO starter template
   - `hq/` — HQ directory structure template
+  - `skills/go-git/SKILL.md.template` — /go-git skill (full git workflow)
 - `SCAFFOLDING-GUIDE.md` — Detailed guide on what gets created and why
 
 ## The Pattern
@@ -54,6 +56,9 @@ The scaffolding creates a **Chief of Staff** pattern:
 ```
 project-root/
   CLAUDE.md              ← Defines the root agent as coordinator
+  .claude/
+    skills/
+      go-git/SKILL.md    ← /go-git slash command (git add → commit → push)
   {project}-hq/          ← The agent's workspace (docs, tasks, plans)
     OPERATIONS.md        ← How work gets done
     TODO.md              ← Current todo list

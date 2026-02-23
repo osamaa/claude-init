@@ -1,0 +1,37 @@
+---
+name: go-git
+description: Full git workflow — stage, commit, and push all changes in one go
+user-invocable: true
+---
+
+# /go-git — Full Git Workflow
+
+When the user runs `/go-git`, execute the complete git add → commit → push workflow automatically.
+
+## Steps
+
+1. **Assess changes** — Run `git status` (never use `-uall`) and `git diff` (staged + unstaged) to understand what changed.
+
+2. **Review recent commits** — Run `git log --oneline -5` to match the repo's commit message style.
+
+3. **Stage files** — `git add` the relevant changed files by name. Do NOT use `git add -A` or `git add .` — be explicit about which files to stage. Skip any files that look like secrets (`.env`, credentials, tokens).
+
+4. **Commit** — Write a clear, concise commit message that:
+   - Summarizes the *why* not the *what*
+   - Follows the style of recent commits in the repo
+   - Ends with `Co-Authored-By: Claude <noreply@anthropic.com>`
+   - Is passed via HEREDOC for proper formatting
+
+5. **Check remote** — Run `git remote -v` to check if a remote is configured. If no remote exists, skip the push, tell the user the commit was created but there's no remote to push to, and stop.
+
+6. **Push** — Run `git push`. If the current branch has no upstream, use `git push -u origin HEAD`.
+
+7. **Confirm** — Show a short summary of what was committed and pushed (or just committed, if push was skipped).
+
+## Rules
+
+- If there are NO changes to commit, say so and stop — do not create an empty commit.
+- If the push fails (e.g. remote rejected), report the error clearly — do not force push.
+- Never use `--force`, `--no-verify`, or any destructive flags.
+- Never amend previous commits — always create new ones.
+- If a pre-commit hook fails, fix the issue, re-stage, and create a NEW commit.
