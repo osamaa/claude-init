@@ -1,0 +1,157 @@
+# Operations Manual
+
+How work gets planned, tracked, and completed on {{PROJECT_NAME}}.
+
+## What Needs a Task Brief?
+
+**Non-trivial work** — write a brief in `{{HQ_DIR}}/tasks/` first:
+- New features or capabilities
+- Changes touching 3+ files
+- Anything involving new dependencies
+- Architectural changes
+- Work that needs user input on approach
+
+**Trivial work** — just delegate it:
+- Typo fixes, comment updates
+- Single-line bug fixes with obvious cause
+- Renaming a variable
+- Updating a string or constant
+
+When in doubt, write the brief. It takes 2 minutes and saves 20.
+
+## Critical Rules
+
+1. **Nothing is done until the user says it's done.** You can implement, build, and report — but the user makes the final call.
+2. **No commits until approved.** Stage files if you want, but `git commit` only on explicit user approval.
+3. **Every task needs verification.** Run the build/lint/test commands before reporting. Don't report success if the build fails.
+4. **Build before you report.** Always. No exceptions. "It should work" is not verification.
+
+{{#MULTI_PROJECT}}
+## The Agents
+
+| Agent | Scope | Location |
+|-------|-------|----------|
+| **Chief of Staff** | Strategy, coordination, delegation | Project root |
+{{AGENT_TABLE_ROWS}}
+{{/MULTI_PROJECT}}
+
+## Task Lifecycle
+
+```
+Request → Brief → Delegate → Review → Build/Verify → Report → User Tests → Confirm → Update Brief → Commit
+```
+
+1. **Request** — User describes what they want
+2. **Brief** — Write task brief in `{{HQ_DIR}}/tasks/NNNN-slug.md`
+3. **Delegate** — Spawn a sub-agent (Task tool) with a clear prompt referencing the brief
+4. **Review** — Read the agent's output, check what was changed
+5. **Build/Verify** — Run build/lint/test commands
+6. **Report** — Tell the user what was done, what was changed, verification results
+7. **User Tests** — User runs the code, tries it out
+8. **Confirm** — User says it's good (or requests changes)
+9. **Update Brief** — Mark status, write the Outcome section
+10. **Commit** — Only when user explicitly approves
+
+## Task Brief Template
+
+File: `{{HQ_DIR}}/tasks/NNNN-slug.md` (sequential numbering: 0001, 0002, ...)
+
+```markdown
+# NNNN: Title
+
+**Priority:** P0 (critical) / P1 (important) / P2 (nice-to-have) / P3 (backlog)
+**Status:** Pending / In Progress / Done / Blocked / Cancelled
+
+## Objective
+
+One or two sentences. What are we doing and why?
+
+## Context
+
+Background information. Why now? What prompted this? Link to relevant docs or plans if applicable.
+
+## Acceptance Criteria
+
+- [ ] Criterion 1
+- [ ] Criterion 2
+- [ ] Criterion 3
+
+## How to Verify
+
+Step-by-step instructions to confirm this works. Be specific enough that anyone could follow them.
+
+## Files Likely Involved
+
+- `file1` — what changes here
+- `file2` — what changes here
+
+## Notes
+
+Anything else relevant — edge cases, risks, open questions, alternative approaches considered.
+
+## Outcome
+
+_Filled in after completion._
+
+What was actually done. Any deviations from the plan. What was learned.
+```
+
+## Decision Log Template
+
+File: `{{HQ_DIR}}/decisions/NNNN-slug.md`
+
+```markdown
+# NNNN: Title
+
+**Date:** YYYY-MM-DD
+
+## Context
+
+What situation or question prompted this decision?
+
+## Decision
+
+What was decided?
+
+## Alternatives Considered
+
+- **Option A:** Description — why rejected
+- **Option B:** Description — why rejected
+
+## Rationale
+
+Why this choice over the alternatives?
+```
+
+{{#MULTI_PROJECT}}
+## Cross-Project Contracts
+
+When multiple projects must align (API shapes, DB schema changes, shared conventions), the contract is defined first in `{{HQ_DIR}}/contracts/`:
+
+```markdown
+# Contract: [Title]
+
+**Date:** YYYY-MM-DD
+**Between:** {{CONTRACT_PARTIES_EXAMPLE}}
+
+## Specification
+The agreed interface — schema, API shape, data format, etc.
+
+## Expectations per Project
+What each project will build against / provide.
+```
+
+Both agents receive the contract before starting work. Neither deviates without updating the contract first.
+{{/MULTI_PROJECT}}
+
+## Plans
+
+Strategic plans go in `{{HQ_DIR}}/plans/`. Free-form markdown. Use them for multi-task initiatives or architectural direction. Reference task briefs from plans when breaking work into steps.
+
+## Ideas
+
+Feature ideas and backlog items go in `{{HQ_DIR}}/ideas/`. Free-form markdown. When an idea gets promoted to real work, create a task brief for it.
+
+## Numbering
+
+Tasks and decisions are numbered sequentially (0001, 0002, ...). Each sequence is independent — Task 0003 and Decision 0003 are different things.
