@@ -14,6 +14,7 @@ your-project/
   .claude/
     skills/
       go-git/SKILL.md    # /go-git slash command (git add → commit → push)
+      new-idea/SKILL.md  # /new-idea slash command (quick idea capture)
   hq/                    # The agent's workspace
     OPERATIONS.md        # How work gets done (lifecycle, templates, rules)
     TODO.md              # Running todo list
@@ -65,6 +66,10 @@ The root agent **never edits code** — even for single-codebase projects. It al
 ### `/go-git`
 
 A one-command git workflow: stages changed files explicitly, commits with a style-matched message, and pushes. Checks if a remote exists before pushing — if there's no remote, it commits and stops. Never force pushes, never amends, skips secrets.
+
+### `/new-idea`
+
+Quick idea capture to the HQ ideas backlog. Usage: `/new-idea create a page for latest news`. No questions asked — it finds the next number, generates a slug, writes a formatted idea file to `{hq}/ideas/`, and confirms. Designed for speed: zero back-and-forth.
 
 ## Works With
 
