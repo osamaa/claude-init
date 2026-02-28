@@ -19,10 +19,10 @@ The agent's workspace. Contains:
 
 | Directory | Purpose |
 |-----------|---------|
-| `tasks/` | Task briefs — the unit of work. Every non-trivial change starts as a task brief. |
+| `tasks/` | Task briefs — the unit of work. Every non-trivial change starts as a task brief. Completed tasks get moved to `tasks/archive/`. |
 | `decisions/` | Decision log — records of key choices and their rationale. |
 | `contracts/` | Cross-project contracts — interface agreements between sub-projects. |
-| `plans/` | Strategy docs — larger plans that spawn multiple tasks. |
+| `plans/` | Strategy docs — larger plans that spawn multiple tasks. Completed plans get moved to `plans/archive/`. |
 | `ideas/` | Ideas backlog — things to explore later. Completed ideas get moved to `ideas/archive/`. |
 | `guides/` | How-to guides and runbooks — operational knowledge. |
 
@@ -35,7 +35,7 @@ The operations manual inside the HQ. Defines:
 - Numbering conventions
 
 ### 4. `TODO.md`
-A simple running todo list organized by project area.
+A simple running todo list organized by project area. Sections are removed when their corresponding plan is archived — TODO.md only reflects active and upcoming work.
 
 ### 5. `.claude/skills/go-git/`
 A skill that gives the agent a `/go-git` slash command — a full git add → commit → push workflow in one step. It checks for a remote before pushing (skips push if none exists), stages files explicitly (no `git add .`), skips secrets, and follows the repo's commit style.

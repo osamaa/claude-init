@@ -63,10 +63,13 @@ project-root/
     OPERATIONS.md        ← How work gets done
     TODO.md              ← Current todo list
     tasks/               ← Task briefs (numbered: 0001-title.md)
+      archive/           ← Completed tasks (moved here when done)
     decisions/           ← Decision log (numbered: 0001-title.md)
     contracts/           ← Cross-project interface contracts
     plans/               ← Strategy and planning docs
+      archive/           ← Completed plans (moved here when all tasks done)
     ideas/               ← Ideas backlog
+      archive/           ← Completed ideas (moved here when implemented)
     guides/              ← How-to guides and runbooks
   sub-project-a/         ← Code directory (has its own CLAUDE.md)
   sub-project-b/         ← Code directory (has its own CLAUDE.md)

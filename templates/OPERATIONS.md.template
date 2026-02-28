@@ -26,6 +26,7 @@ When in doubt, write the brief. It takes 2 minutes and saves 20.
 3. **Every task needs verification.** Run the build/lint/test commands before reporting. Don't report success if the build fails.
 4. **Build before you report.** Always. No exceptions. "It should work" is not verification.
 5. **Surface stale tasks.** At the start of each session, check `{{HQ_DIR}}/tasks/` for briefs with Status "In Progress". List them and ask the user if any should be closed. Never close them on your own.
+6. **Log decisions automatically.** When you choose between multiple valid approaches — tech choices, API design, architecture patterns, library selection, data modeling — write a decision log entry in `{{HQ_DIR}}/decisions/` without being asked. If a choice was non-obvious and someone might later ask "why did we do it this way?", it deserves a decision record.
 
 {{#MULTI_PROJECT}}
 ## The Agents
@@ -52,6 +53,10 @@ Request → Brief → Delegate → Review → Build/Verify → Report → User T
 8. **Confirm** — User says it's good (or requests changes)
 9. **Update Brief** — Mark status, write the Outcome section
 10. **Commit** — Only when user explicitly approves
+
+### Archiving Tasks
+
+When the user confirms a task is done and the brief's Status is set to "Done", move the task file from `{{HQ_DIR}}/tasks/` to `{{HQ_DIR}}/tasks/archive/`. This keeps the main tasks folder focused on active work. Archived tasks are kept for reference, not deleted.
 
 ## Task Brief Template
 
@@ -148,6 +153,14 @@ Both agents receive the contract before starting work. Neither deviates without 
 ## Plans
 
 Strategic plans go in `{{HQ_DIR}}/plans/`. Free-form markdown. Use them for multi-task initiatives or architectural direction. Reference task briefs from plans when breaking work into steps.
+
+### Archiving Plans
+
+When all tasks spawned from a plan are done and the user confirms the plan is complete, move the plan file from `{{HQ_DIR}}/plans/` to `{{HQ_DIR}}/plans/archive/`. This keeps the main plans folder focused on active initiatives. Archived plans are kept for reference, not deleted.
+
+### Cleaning Up TODO.md
+
+When a plan is archived, remove its corresponding section from `TODO.md`. The history is preserved in the archived plan and task briefs — TODO.md should only reflect active and upcoming work.
 
 ## Ideas
 
