@@ -172,4 +172,4 @@ When the user confirms a task is done and that task originated from an idea file
 
 ## Numbering
 
-Tasks and decisions are numbered sequentially (0001, 0002, ...). Each sequence is independent — Task 0003 and Decision 0003 are different things.
+Tasks and decisions are numbered sequentially (0001, 0002, ...). Each sequence is independent — Task 0003 and Decision 0003 are different things. When determining the next number, check BOTH the active folder and `archive/` subfolder for the highest existing number — archived items still count in the sequence.
